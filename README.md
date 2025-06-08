@@ -189,6 +189,11 @@ Response:
 }
 ````
 
+3. /generate-personas-batch-csv (POST)
+Description: Generate personas for reviews in a CSV or Excel file.
+Request Body: Upload a file with the required columns (customer_id, review).
+Response:
+
 ````
 {
   "status": "success",
