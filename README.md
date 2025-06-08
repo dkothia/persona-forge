@@ -56,6 +56,6 @@ REACT_APP_BACKEND_URL=http://localhost:8000
 4. Run the Application
 Backend
 Start the Flask server:
-```
+````
 python application.py
-```
+````
