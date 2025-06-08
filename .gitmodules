@@ -1,0 +1,3 @@
+[submodule "persona-frontend"]
+	path = persona-frontend
+	url = https://github.com/dkothia/persona-frontend.git
