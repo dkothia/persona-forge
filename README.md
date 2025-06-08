@@ -1,374 +1,112 @@
-# persona-forge-app
+Persona Forge
+Persona Forge is a powerful application designed to generate user personas based on customer reviews. It provides functionality for processing individual reviews, batch reviews, and file uploads (CSV/Excel). This tool is ideal for businesses and marketers looking to understand their customers better and create targeted strategies based on persona insights.
 
-# Persona Forge
+Features
+1. Single Review Processing
+Input a single customer review in the text area.
+Generate a detailed persona based on the review.
+The persona includes demographics, goals, pain points, personality traits, and preferred communication styles.
+2. Batch Review Processing
+Input multiple customer reviews separated by new lines.
+Generate personas for each review in a batch.
+View the results in a table format.
+3. File Upload Processing
+Upload a CSV or Excel file containing customer reviews.
+The file must include the columns customer_id and review.
+Generate personas for all reviews in the file.
+View the results in a table format and download them as an Excel file.
+4. Download Results
+Export the generated personas to an Excel file for further analysis or sharing.
+Technologies Used
+Frontend
+React.js: For building the user interface.
+XLSX.js: For exporting persona results to Excel files.
+Backend
+Flask: For handling API requests and persona generation logic.
+Python Libraries:
+pandas: For processing Excel files.
+csv: For processing CSV files.
+Deployment
+AWS Elastic Beanstalk: For deploying the backend.
+Netlify: For deploying the frontend.
+Setup Instructions
+Follow these steps to set up and run the Persona Forge application locally:
 
-Persona Forge is a full-stack application designed to generate detailed customer personas based on their reviews using advanced AI techniques. It supports both single and batch processing of customer reviews, including the ability to upload and process CSV or Excel files and download the results. The frontend is managed as a Git submodule and provides an intuitive React-based user interface.
+1. Clone the Repository
+2. Install Dependencies
+Frontend
+Navigate to the persona-frontend directory and install dependencies:
 
----
+Backend
+Navigate to the root directory and install Python dependencies:
 
-## Table of Contents
+3. Configure Environment Variables
+Create a .env file in the backend directory and add the following:
 
-- [Features](#features)  
-- [Architecture](#architecture)  
-- [Getting Started](#getting-started)  
-- [Usage](#usage)  
-- [Frontend Submodule](#frontend-submodule)  
-- [Batch Processing](#batch-processing)  
-- [File Upload Support](#file-upload-support)  
-- [Contributing](#contributing)  
-- [License](#license)  
+For the frontend, you can configure environment variables in .env.local:
 
----
+4. Run the Application
+Backend
+Start the Flask server:
 
-## Features
+Frontend
+Start the React development server:
 
-- Generate AI-driven customer personas from individual reviews.
-- Batch processing of multiple customer reviews in one request.
-- Upload CSV or Excel files containing customer reviews to process in bulk.
-- Download processed results as CSV files for easy integration.
-- React-based frontend for seamless user interaction.
-- Backend API with endpoints for single and batch persona generation.
+5. Access the Application
+Open your browser and navigate to:
 
----
-
-## Architecture
-
-- **Backend:** Flask API running on AWS Elastic Beanstalk.  
-- **Frontend:** React app maintained as a Git submodule under `persona-frontend` folder.  
-- **AI Integration:** Uses OpenAI API for persona generation.  
-- **File Processing:** Supports CSV and Excel file uploads for bulk processing.
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.8+  
-- Node.js and npm (for frontend development)  
-- AWS CLI and Elastic Beanstalk CLI (if deploying)  
-- Git
-
-### Setup Backend
-
-1. Clone the main repo with submodules:
-
-   ```bash
-   git clone --recurse-submodules https://github.com/dkothia/persona-forge.git
-   cd persona-forge
-Create and activate a Python virtual environment:
-
-bash
-Copy
-Edit
-python3 -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-Install backend dependencies:
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Set your OpenAI API key as an environment variable:
-
-bash
-Copy
-Edit
-export OPENAI_API_KEY="your_openai_api_key"
-Run the Flask backend locally:
-
-bash
-Copy
-Edit
-flask run
-Usage
-Single Review Persona Generation
-Send a POST request to:
-
-bash
-Copy
-Edit
-POST /generate-persona
-Content-Type: application/json
-Body: { "text": "Your customer review here" }
-Example curl command:
-
-bash
-Copy
-Edit
-curl -X POST http://localhost:5000/generate-persona \
--H "Content-Type: application/json" \
--d '{"text": "Amazing service and food!"}'
-Batch Review Persona Generation
-Send a POST request to:
-
-bash
-Copy
-Edit
-POST /generate-personas-batch
-Content-Type: application/json
-Body: {
-  "data": [
-    {"customer_id": "CUST001", "review": "Great ambiance and service."},
-    {"customer_id": "CUST002", "review": "Food was delicious!"}
-  ]
-}
-File Upload Processing
-The frontend supports uploading CSV or Excel files containing customer reviews with columns:
-
-customer_id
-
-review
-
-The backend processes the uploaded file, generates personas for each review, and returns a downloadable file with the results.
-
-Frontend Submodule
-The frontend React app lives inside the persona-frontend folder as a Git submodule.
-
-Working with Submodule
-To initialize and update the submodule after cloning:
-
-bash
-Copy
-Edit
-git submodule init
-git submodule update
-Or clone including submodules:
-
-bash
-Copy
-Edit
-git clone --recurse-submodules https://github.com/dkothia/persona-forge.git
-To work on frontend code:
-
-bash
-Copy
-Edit
-cd persona-frontend
-npm install
-npm start
-Batch Processing
-Batch persona generation can be performed via the API or frontend interface, allowing efficient processing of multiple customer reviews in one go.
-
-File Upload Support
-Supported file formats:
-
-CSV (.csv)
-
-Excel (.xlsx, .xls)
-
-Uploaded files should have at least these columns:
-
-customer_id	review
-CUST001	"The service was great."
-
-The system processes all reviews and appends the persona output in the results downloadable by the user.
-
+Usage Guide
+1. Single Review Processing
+Enter a customer review in the text area.
+Click the "Generate Personas" button.
+View the generated persona in the result box.
+2. Batch Review Processing
+Enter multiple customer reviews separated by new lines in the text area.
+Click the "Generate Personas" button.
+View the generated personas in a table below.
+3. File Upload Processing
+Click the "Upload File" button and select a CSV or Excel file.
+Ensure the file contains the columns customer_id and review.
+View the generated personas in a table below.
+Click the "Download Results" button to export the results to an Excel file.
+File Structure
+Frontend
+Backend
+API Endpoints
+1. /generate-persona (POST)
+Description: Generate a persona for a single review.
+Request Body:
+Response:
+2. /generate-personas-batch (POST)
+Description: Generate personas for multiple reviews.
+Request Body:
+Response:
+3. /generate-personas-batch-csv (POST)
+Description: Generate personas for reviews in a CSV or Excel file.
+Request Body: Upload a file with the required columns (customer_id, review).
+Response:
+Troubleshooting
+1. Backend Not Running
+Ensure Flask is installed and the server is running on the correct port (8000).
+Check for errors in the terminal.
+2. Frontend Not Connecting to Backend
+Verify the REACT_APP_BACKEND_URL in .env.local matches the backend URL.
+Check the browser console for errors.
+3. File Upload Issues
+Ensure the file contains the required columns (customer_id, review).
+Check the backend logs for errors during file processing.
 Contributing
-Contributions and improvements are welcome! Please submit pull requests or open issues to discuss changes.
+We welcome contributions to improve Persona Forge! Please follow these steps:
 
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Submit a pull request with a detailed description of your changes.
 License
-This project is licensed under the MIT License.
+Persona Forge is licensed under the MIT License.
 
 Contact
-Created and maintained by Dishant Kothia.
+For questions or support, please contact:
 
-yaml
-Copy
-Edit
-
----
-
-If you want, I can also help you create a README for the **frontend** repo specifically.
-
-Let me know!
-
-
-markdown
-Copy
-Edit
-# Persona Forge
-
-**Persona Forge** is an AI-powered full-stack application that generates rich, tailored customer personas based on user reviews. It supports both individual and bulk processing of reviews, accepts CSV/Excel uploads, and returns detailed persona outputs via downloadable files. The frontend is built in React and included as a Git submodule for modularity.
-
----
-
-## 📌 Features
-
-- 🎯 **Single Review Analysis** – Generate a persona from one customer review.
-- 📦 **Batch Processing** – Handle multiple reviews in a single API request.
-- 📂 **File Upload Support** – Upload `.csv` or `.xlsx` files and receive processed output for all rows.
-- 💾 **Downloadable Results** – Download AI-generated personas in bulk.
-- 🌐 **Modern React Frontend** – Clean, user-friendly UI (included as Git submodule).
-- 🚀 **Deployable on AWS Elastic Beanstalk** – Easily run and scale the app.
-
----
-
-## 🧱 Project Structure
-
-persona-forge/
-├── persona-frontend/ # React frontend (Git submodule)
-├── app.py # Flask backend
-├── utils.py # Supporting backend utilities
-├── requirements.txt # Backend dependencies
-└── README.md # You're here!
-
-yaml
-Copy
-Edit
-
----
-
-## 🧰 Tech Stack
-
-| Layer      | Tech Used            |
-|------------|----------------------|
-| Backend    | Python, Flask, OpenAI |
-| Frontend   | React.js, Tailwind   |
-| Deployment | AWS Elastic Beanstalk|
-| File Handling | pandas, openpyxl, Flask-Uploads |
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the Repo with Submodules
-
-```bash
-git clone --recurse-submodules https://github.com/dkothia/persona-forge.git
-cd persona-forge
-If you already cloned it:
-
-bash
-Copy
-Edit
-git submodule init
-git submodule update
-2. Backend Setup (Flask)
-bash
-Copy
-Edit
-python3 -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-Set your OpenAI API key:
-
-bash
-Copy
-Edit
-export OPENAI_API_KEY="your-api-key-here"
-Run the app:
-
-bash
-Copy
-Edit
-flask run
-3. Frontend Setup (React)
-bash
-Copy
-Edit
-cd persona-frontend
-npm install
-npm start
-App runs at http://localhost:3000 and interacts with the backend API.
-
-💡 API Usage Guide
-🔹 Single Review
-http
-Copy
-Edit
-POST /generate-persona
-Content-Type: application/json
-
-{
-  "text": "The sushi was fresh and the ambiance perfect for a date night."
-}
-Curl Example:
-
-bash
-Copy
-Edit
-curl -X POST http://localhost:5000/generate-persona \
--H "Content-Type: application/json" \
--d '{"text": "Amazing service and food!"}'
-🔹 Batch Review
-http
-Copy
-Edit
-POST /generate-personas-batch
-Content-Type: application/json
-
-{
-  "data": [
-    {
-      "customer_id": "CUST001",
-      "review": "Great service and fast delivery!"
-    },
-    {
-      "customer_id": "CUST002",
-      "review": "The ambiance was amazing, and the food was worth every penny."
-    }
-  ]
-}
-📄 CSV/Excel Upload (Via Frontend)
-Upload .csv or .xlsx file with the following structure:
-
-customer_id	review
-CUST001	"The service was amazing!"
-CUST002	"Loved the coffee and pastries."
-
-After processing, you'll receive a downloadable file with the original content and an added persona column.
-
-🔧 Frontend Submodule Notes
-The frontend lives inside persona-frontend/ as a Git submodule.
-
-To update or re-initialize it:
-
-bash
-Copy
-Edit
-git submodule update --remote
-If needed:
-
-bash
-Copy
-Edit
-git submodule add https://github.com/dkothia/persona-frontend.git persona-frontend
-📤 Deployment on AWS Elastic Beanstalk
-Ensure you have the AWS CLI and EB CLI set up:
-
-bash
-Copy
-Edit
-eb init -p python-3.8 persona-env
-eb create persona-env
-eb deploy
-Update frontend to point to the deployed backend URL if needed.
-
-🤝 Contributing
-Contributions are welcome! Please fork this repo, create a feature branch, and submit a pull request.
-
-🔐 Environment Variables
-Variable	Purpose
-OPENAI_API_KEY	Required for persona generation
-
-Set in .env (but don’t commit it) or export directly in your shell session.
-
-📄 License
-This project is licensed under the MIT License.
-
-✨ Author
-Dishant Kothia
-Feel free to connect on GitHub
-
-vbnet
-Copy
-Edit
-
-Let me know if you'd like a separate version for `persona-frontend` as well!
-
-
-
-
-
-
+Email: support@personaforge.com
+GitHub Issues: GitHub Issues
+Thank you for using Persona Forge! 🎉
