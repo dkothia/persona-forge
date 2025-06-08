@@ -189,6 +189,7 @@ Response:
 }
 ````
 
+````
 {
   "status": "success",
   "data": [
@@ -204,3 +205,38 @@ Response:
     }
   ]
 }
+````
+
+Troubleshooting
+
+1. Backend Not Running
+Ensure Flask is installed and the server is running on the correct port (8000).
+Check for errors in the terminal.
+
+3. Frontend Not Connecting to Backend
+Verify the REACT_APP_BACKEND_URL in .env.local matches the backend URL.
+Check the browser console for errors.
+
+5. File Upload Issues
+Ensure the file contains the required columns (customer_id, review).
+Check the backend logs for errors during file processing.
+
+Contributing
+We welcome contributions to improve Persona Forge! Please follow these steps:
+
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Submit a pull request with a detailed description of your changes.
+License
+Persona Forge is licensed under the MIT License.
+
+Contact
+For questions or support, please contact:
+
+Email: support@personaforge.com
+GitHub Issues: GitHub Issues
+Thank you for using Persona Forge! 🎉
+
+
+
+
